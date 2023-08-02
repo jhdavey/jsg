@@ -8,6 +8,7 @@ const locationData = require('./locationData.json');
 db.once('open', async () => {
 
 
+
     await User.deleteMany({});
     await Location.deleteMany({});
 
@@ -21,3 +22,4 @@ db.once('open', async () => {
   });
   
   
+
