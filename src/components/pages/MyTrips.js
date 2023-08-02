@@ -12,7 +12,7 @@ const GET_MY_TRIPS = gql`
   }
 `;
 
-const MyTrips = () => {
+export default function MyTrips () {
   const { loading, error, data } = useQuery(GET_MY_TRIPS);
   
 
@@ -38,5 +38,3 @@ const MyTrips = () => {
     </div>
   );
 };
-
-export default MyTrips;
