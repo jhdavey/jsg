@@ -16,7 +16,19 @@ const userSchema = new Schema({
     required: true,
     unique: true,
   },
-});
+  savedLocation: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Location',
+    }
+  ],
+},
+  {
+    toJSON: {
+      virtuals: true,
+    },
+  }
+);
 
 const User = model('User', userSchema);
 
