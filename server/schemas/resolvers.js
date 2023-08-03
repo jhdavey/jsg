@@ -1,4 +1,4 @@
-const { User } = require('../models/User');
+const { User, Location } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -6,6 +6,9 @@ const resolvers = {
   Query: {
     user: async () => {
       return User.find({});
+    },
+    myTrips: async () => {
+      return Location.find({});
     },
   },
   Mutation: {

@@ -13,9 +13,9 @@ const typeDefs = gql`
     locationId: ID!
     name: String!
     description: String!
+    country: String!
     image: String
     link: String
-    title: String!
   }
 
   type Auth {
@@ -27,13 +27,15 @@ const typeDefs = gql`
     locationId: ID!
     name: String!
     description: String!
+    country: String!
     image: String
     link: String
-    title: String!
   }
 
   type Query {
     user: [User]
+    myTrips: [Location]
+
   }
 
   type Mutation {
