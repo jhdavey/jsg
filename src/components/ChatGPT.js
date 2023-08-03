@@ -4,7 +4,7 @@ import axios from "axios";
 export default function ChatGPT() {
     const [prompt, setPrompt] = useState("");
     const [response, setResponse] = useState("");
-    const HTTP = "http://localhost:3001/chat";
+    const HTTP = "http://localhost:8020/chat";
 
     const handleSubmit = (e) => {
         e.preventDefault();
