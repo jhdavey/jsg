@@ -1,13 +1,12 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
 
+// got rid of hotel, flight, and destination. adding Name
 const GET_MY_TRIPS = gql`
   query GetMyTrips {
     myTrips {
       _id
-      destination
-      hotel
-      flight
+      name
     }
   }
 `;
@@ -28,9 +27,9 @@ export default function MyTrips () {
         <ul>
           {data.myTrips.map((trip) => (
             <li key={trip._id}>
-              <strong>Destination:</strong> {trip.destination},{" "}
-              <strong>Hotel:</strong> {trip.hotel}, <strong>Flight:</strong>{" "}
-              {trip.flight}
+              <strong>Destination:</strong> {trip.name},{" "}
+              {/* <strong>Hotel:</strong> {trip.hotel}, <strong>Flight:</strong>{" "} */}
+              {/* {trip.flight} */}
             </li>
           ))}
         </ul>
