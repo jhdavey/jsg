@@ -10,7 +10,7 @@ const path = require("path");
 
 //Setup Open Ai connection
 const config = new Configuration({
-  apiKey: "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"
+  apiKey: "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"
 })
 
 const openai = new OpenAIApi(config);
@@ -25,15 +25,17 @@ app.post("/chat", async (req, res) => {
   
   const completion = openai.createCompletion({
     model: "text-davinci-003",
-    messages: [{"role": "system",
-              "content": "You are a travel assistant that provides recommendations for activities and restaurants based on destination provided by the user."
-  }],
     max_tokens: 512,
     temperature: 0,
     prompt: prompt,
   });
   res.send((await completion).data.choices[0].text);
 })
+
+// express server
+const openAiPort = 8020;
+
+app.listen(openAiPort,() => console.log(`OpenAi Server running on port : ${openAiPort}...`));
 
 app.use(express.json());
 
