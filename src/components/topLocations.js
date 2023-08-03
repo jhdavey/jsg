@@ -28,7 +28,7 @@ const TopLocations = () => {
           <h3>{location.name}</h3>
           <p>{location.description}</p>
           <p>Country: {location.country}</p>
-          <img src={location.imageUrl} alt={location.name} />
+          <img src={location.image} alt={location.name} />
         </div>
       ))}
     </div>

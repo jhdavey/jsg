@@ -2,10 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import  Home from './components/pages/Home';
+import Home from './components/pages/Home';
+import MyTrips from './components/pages/MyTrips'
 
 // import SearchLocation from './pages/SearchLocation';
-// import SavedLocation from './pages/SavedLocation';
 // import Navbar from './components/Navbar';
 
 // Construct our main GraphQL API endpoint
@@ -40,6 +40,7 @@ function App() {
           {/* <Navbar /> */}
           <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/MyTrips' element={<MyTrips />} />
           <Route path='*' element={<h1 className="display-2">Wrong page!</h1>}/>
           </Routes>
         </>

@@ -1,40 +1,41 @@
 
 [
     {
-        "name":"Italy",
+        "name":"Rome",
+        "country":"Italy",
         "description": "Visit the wonderful country of Italy!",
         "locationId": "1",
         "image":"Alt Image",
-        "link":"italy.com",
-        "title": "Italy"
+        "link":"italy.com"
     },
     {
-        "name":"France",
+        "name":"Paris",
+        "country":"France",
         "description": "Visit the wonderful country of France!",
         "locationId": "2",
         "image":"Alt Image",
-        "link":"France.com",
-        "title": "France"
+        "link":"France.com"
     },
        {
-        "name":"Greece",
-        "description": "Visit the wonderful country of Greece!",
+        "name":"Marathon",
+        "country":"Greece",
+        "description": "Run a Marathon in Greece!",
         "locationId": "1",
         "image":"Alt Image",
-        "link":"Greece.com",
-        "title": "Greece"
+        "link":"Greece.com"
     },    {
-        "name":"Switzerland",
+        "name":"Bern",
+        "country":"Switzerland",
         "description": "Visit the wonderful country of Switzerland!",
         "locationId": "1",
         "image":"Alt Image",
-        "link":"Switzerland.com",
-        "title": "Switzerland"
+        "link":"Switzerland.com"
     },    {
-        "name":"Japan",
+        "name":"Tokyo",
+        "country":"Italy",
         "description": "Visit the wonderful country of Japan!",
         "locationId": "1",
         "image":"Alt Image",
-        "link":"Japan.com",
-        "title": "Japan"
+        "link":"Japan.com"
     }
+]
