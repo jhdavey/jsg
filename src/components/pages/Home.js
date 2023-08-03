@@ -1,5 +1,10 @@
+import ChatGPT from "../ChatGPT"
+
 export default function Home() {
     return (
-    <h1>Hello</h1>
+        <div>
+            <h1>Jet Set Go!</h1>
+            <ChatGPT />
+        </div>
     )
     }
