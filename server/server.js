@@ -10,7 +10,7 @@ const path = require("path");
 
 //Setup Open Ai connection
 const config = new Configuration({
-  apiKey: "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"
+  apiKey: "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"
 })
 
 const openai = new OpenAIApi(config);
@@ -31,11 +31,6 @@ app.post("/chat", async (req, res) => {
   });
   res.send((await completion).data.choices[0].text);
 })
-
-// express server
-const openAiPort = 8020;
-
-app.listen(openAiPort,() => console.log(`OpenAi Server running on port : ${openAiPort}...`));
 
 app.use(express.json());
 
