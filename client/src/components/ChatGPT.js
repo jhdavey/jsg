@@ -18,7 +18,6 @@ export default function ChatGPT() {
     const handlePrompt = (e) => setPrompt(e.target.value);
 
     return <div className="container">
-    <h1>ChatGPT</h1>
     <form className="form" onSubmit={handleSubmit}>
         <div className="form-group">
             <label htmlFor="">Where would you like to go?</label>
