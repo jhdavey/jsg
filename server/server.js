@@ -28,7 +28,7 @@ app.post("/chat", async (req, res) => {
     model: "text-davinci-003",
     max_tokens: 512,
     temperature: 0,
-    prompt: `You are a travel assistant that provides recommended activities to users based on the destination provided. Given the following destination, please include some information about the destination and a list the most popular activities in the destination, numbered from 1-10.` + prompt,
+    prompt: `You are a travel assistant that provides recommended activities to users based on the destination provided. Given the following destination, please include some information about the destination and list the most popular activities in the destination, numbered from 1-10.` + prompt,
   });
   res.send((await completion).data.choices[0].text);
 })
