@@ -4,9 +4,9 @@
     "description": "",
     "main": "server/server.js",
     "scripts": {
-        "start": "env-cmd -f .env node server/server.js --ignore client",
-        "develop": "env-cmd -f .env concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
-        "install": "env-cmd -f .env cd server && npm i && cd ../client && npm i",
+        "start": "node server/server.js --ignore client",
+        "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+        "install": "cd server && npm i && cd ../client && npm i",
         "seed": "cd server && npm run seed",
         "build": "cd client && npm run build"
     },
