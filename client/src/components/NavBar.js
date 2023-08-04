@@ -5,6 +5,7 @@ import LoginForm from './loginForm';
 import myTrips from './pages/MyTrips';
 import ChatGPT from './ChatGPT';
 import Auth from '../utils/auth';
+import { Form, Button, Alert, Nav, Modal, Navbar, Container } from "react-bootstrap";
 
 const AppNavbar = () => {
     const [showModal, setShowModal] = useState(false);
@@ -17,7 +18,7 @@ const AppNavbar = () => {
                 JetSetGo!
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls='navbar' />
-                <Navbar.Collaspe id='navbar'>
+                <Navbar.Collapse id='navbar'>
                     <Nav>
                         {/* The navbar will show these links after you log in */}
                         {!Auth.loggedIn()? (
@@ -31,7 +32,7 @@ const AppNavbar = () => {
                         <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
                         )}
                     </Nav>
-                </Navbar.Collaspe>  
+                </Navbar.Collapse>  
             </Container>
         </Navbar>
         
