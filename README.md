@@ -1,70 +1,94 @@
-# Getting Started with Create React App
+<div align="center">
+<img src="https://forthebadge.com/images/badges/made-with-javascript.svg" alt="js">
+<img src="https://forthebadge.com/images/badges/makes-people-smile.svg" alt="smile">
+<img src="https://forthebadge.com/images/badges/powered-by-coffee.svg" alt="coffee">
+<img src="https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg" alt="ctrl_c">
+<img src="https://forthebadge.com/images/badges/not-a-bug-a-feature.svg" alt="bug">
+<img src="https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg">
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+          
+          
+# Jet Set Go 
 
-## Available Scripts
+![License](https://img.shields.io/static/v1?label=license&message=MIT&color=${badge.color})
 
-In the project directory, you can run:
+## Description
+Jet Set Go is a cutting-edge travel planning app that employs OpenAI's API and MERN stack technology. The AI-based chat interface understands and responds to user queries, providing customized travel recommendations from a vast global database. Users can enjoy personalized experiences through profile preferences, receive insights on local norms and events, and benefit from real-time, GPS-enabled recommendations. The integrated review system allows for informed decision-making, making Jet Set Go a smart, efficient, and user-friendly travel companion.
 
-### `npm start`
+## Quick Links
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [Installation](#installation)
+  
+- [Usage](#usage)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Technologies](#technologies)
 
-### `npm test`
+- [Demo](#demo)
+  
+- [Contributors](#contributors)
+  
+- [Feedback and Support](#feedback-and-support)
+  
+- [License](#license)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+To install and use this repo, please follow the below instructions:
+- Pull the repository files to your local machine
+- Open the repository in your code editor of choice
+- Open the CLI terminal and run the command `npm install` to install the required dependencies
+- Finally run the command `npm run develop` to start the server and run the application
+- The application will be running on `http://localhost:3001/`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To use the web-based version no installation is required. Simply navigate to the deployed application [URL]() and begin using the app in your browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Technologies
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<div style="display:flex; align-items:center;">
+<img style="width:100px;height:auto;"><i class="devicon-javascript-plain" style=font-size:6rem></i></img>
+<img style="width:100px;height:auto;"><i class="devicon-nodejs-plain-wordmark" style=font-size:7rem></i></img>
+<img style="width:100px;height:auto;"><i class="devicon-express-original-wordmark" style=font-size:8rem></i></img>
+<img style="width:100px;height:auto;"><i class="devicon-mongodb-plain-wordmark" style=font-size:7rem></i></img>
+<img style="width:100px;height:auto;"><i class="devicon-graphql-plain-wordmark" style=font-size:7rem></i></img>
+<img style="width:100px;height:auto;"><i class="devicon-react-original-wordmark" style=font-size:6rem></i></img>
+<img style="width:100px;height:auto;"> <i class="devicon-tailwindcss-original-wordmark" style=font-size:9rem></i></img>
+</div>          
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Demo
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+<img src="" style="width:900px;height:auto">
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Follow me to the [Deployed Application]()
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Contributors
+Adam Brannon, Fernando Loret de Mola, Harley Davey, Khusil Khetani, and Maddox Johnson
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- [Check Adam out on Github](https://github.com/adam-brannon09)
+- [Check Fernando out on Github](https://github.com/floretdemola)
+- [Check Harley out on Github](https://github.com/jhdavey)
+- [Check Khusil out on Github](https://github.com/khusil)
+- [Check Maddox out on Github](https://github.com/TheMaddoxJ)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Feedback and Support
 
-### Making a Progressive Web App
+If you encounter any issues while using the Jet Set Go Application or have any suggestions for improvement, please [open an issue](https://github.com/jhdavey/jsg/issues) on the GitHub repository. I appreciate your feedback and will address any concerns as soon as possible.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License
 
-### Advanced Configuration
+The Jet Set Go Application is released under the [MIT License](https://opensource.org/licenses/MIT). You are free to use, modify, and distribute this application as per the terms of this license.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<div align="center">
+    <img src="https://forthebadge.com/images/badges/built-by-developers.svg" />
+    <img style="width:250px" src="https://forthebadge.com/images/badges/works-on-my-machine.svg">
+</div>

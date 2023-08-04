@@ -5,7 +5,7 @@ import { setContext } from '@apollo/client/link/context';
 import Home from './components/pages/Home';
 
 import MyTrips from './components/pages/MyTrips'
-
+import './index.css';
 // import SearchLocation from './pages/SearchLocation';
 // import Navbar from './components/Navbar';
 
@@ -44,7 +44,7 @@ export default function App() {
           <Route path='/' element={<Home />} />
           <Route path='/MyTrips' element={<MyTrips />} />
           {/* Catch all path if user navigates to a path that does not exist */}
-          <Route path='*' element={<h1 className="display-2">Wrong page!</h1>}/>
+            <Route path='*' element={<h1 className="display-2">Wrong page!</h1>} />
           </Routes>
         </>
       </Router>
