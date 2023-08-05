@@ -8,7 +8,7 @@ import { LOGIN_USER } from "../utils/mutations";
 
 const LoginForm = () => {
   // State to store form data
-  const [userFormData, setUserFormData] = useState({ email: "", password: "" });
+  const [userFormData, setUserFormData] = useState({ email: "", password: "", });
   // State for form validation
   const [validated] = useState(false);
   // State to show or hide the alert for login errors

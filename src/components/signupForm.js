@@ -13,13 +13,18 @@ const SignupForm = () => {
     password: "",
   });
   // set state for form validation
-  const [validated] = useState(false);
-  // set state for alert
-  const [showAlert, setShowAlert] = useState(false);
+  // const [validated, setValidated] = useState(false);
+  // // set state for alert
+  // const [showAlert, setShowAlert] = useState(false);
 
-  // get function 'addUser' returned by useMutation hook
-  // to execute the ADD_USER mutation - code below
+  // // get function 'addUser' returned by useMutation hook
+  // // to execute the ADD_USER mutation - code below
+  // const [addUser, { loading }] = useMutation(ADD_USER);
+
+  const [validated, setValidated] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const [addUser, { loading }] = useMutation(ADD_USER);
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -29,27 +34,43 @@ const SignupForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    // const form = event.currentTarget;
+    // if (form.checkValidity() === false) {
+    //   event.preventDefault();
+    //   event.stopPropagation();
+    // }
+
+    // try {
+    //   const { data } = await addUser({
+    //     variables: userFormData,
+    //   });
+    //   Auth.login(data.addUser.token);
+    // } catch (err) {
+    //   console.log(err);
+    //   setShowAlert(true);
+    // }
+
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
-    }
-
-    try {
-      const { data } = await addUser({
-        variables: userFormData,
-      });
-      Auth.login(data.addUser.token);
-    } catch (err) {
-      console.log(err);
-      setShowAlert(true);
-    }
+      setValidated(true); // Show validation errors
+    } else {
+      try {
+        const { data } = await addUser({
+          variables: userFormData,
+        });
+        Auth.login(data.addUser.token);
+      } catch (err) {
+        console.log(err);
+        setShowAlert(true);
+      }
 
     setUserFormData({
       username: "",
       email: "",
       password: "",
     });
+  }
   };
 
   if (loading) {
