@@ -7,13 +7,11 @@ const  mongoose = require("mongoose");
 const { typeDefs, resolvers } = require("./schemas");
 const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
-
+require('dotenv').config();
 //Setup Open Ai connection
 const config = new Configuration({
-  apiKey: "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"
+  apiKey: process.env.OPEN_AI_KEY
 })
-
-const openai = new OpenAIApi(config);
 
 //Initialize instance of express server
 const app = express();

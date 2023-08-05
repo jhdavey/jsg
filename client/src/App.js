@@ -3,11 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import Home from './components/pages/Home';
-
+import Navbar from './components/NavBar';
 import MyTrips from './components/pages/MyTrips'
 
 // import SearchLocation from './pages/SearchLocation';
-// import Navbar from './components/Navbar';
 
 
 // Construct our main GraphQL API endpoint
@@ -39,7 +38,7 @@ export default function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
-          {/* <Navbar /> */}
+          <Navbar />
           <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/MyTrips' element={<MyTrips />} />
