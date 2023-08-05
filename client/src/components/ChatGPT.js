@@ -13,14 +13,7 @@ export default function ChatGPT() {
         let regex = /(\d+\.\d*)\s?(.*?)(?=\d+\.|$)/gs;
         let list = response.match(regex);
         if (list) {setActivityList(list) }
-    }
-
-    if (activityList.length == 10) {
-        console.log(activityList);
-    } else {
-        console.log('Loading...');
-    }
-    
+    }    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -45,17 +38,15 @@ export default function ChatGPT() {
         <div className="chat-container">
             <form className="chat-form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="" className="chat-label">Where would you like to go? </label>
+                    <label htmlFor="" className="chat-label" style={{ fontStyle: "italic" }}>Where would you like to go? </label>
                     <input type="text" className="chat-input" placeholder="Enter your destination" value={prompt} onChange={handlePrompt} />
                 </div>
             </form>
 
             {/* ChatGPT savable list Output section */}
             <div className="output">
-                <h2>{prompt ? `Top 10 activities to do in ${prompt}` : ' '}</h2>
-                    {
-                        /*  This maps each array item to a div adds
-                        the style declared above and return it */
+                <h3>{activityList < 10 ? '' : `Top 10 activities to do in ${prompt}`}</h3>
+                    {/*  This maps each array item to a div adds the style declared above and return it */
                         activityList.map(act => 
                             <div key={act} value={act}>
                             <button value={act} onClick={saveActivity} className="savable-buttons">

@@ -9,45 +9,48 @@ import cancun from '../assets/cancun.jpeg';
 
 
 function TopDestinations() {
+    
+    const [autoPrompt, setAutoPrompt] = useState('');
 
-    // const handleSave = (e) => {
-    //     e.preventDefault();
-    //     console.log(e.target.value);
-    // }
+    // Get city when clicked and set autoPrompt variable
+    const handleClick = event => {
+        setAutoPrompt(event.target.getAttribute('city'));
+        console.log(autoPrompt);
+      };
 
     return (
         
         <div style={{margin:"30px 5px"}}>
-            <h1 style={{ justifyContent: "center" }}>Top Destinations of 2023</h1>
+            <h1 style={{ textAlign: "center" }}>Top Destinations of 2023</h1>
 
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(370px, 1fr))", gap: "1rem", marginTop: "25px" }}>
 
                 <div className="grid-item image-container">
-                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px"}} src={dubai} />
-                    <h3 className="image-title"><a style={{ textDecoration: "none", color: "white" }} href="#">Dubai</a></h3>
+                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px"}} src={dubai} city="Dubai" onClick={handleClick} />
+                    <h3 className="image-title"><a style={{ textDecoration: "none", color: "white" }} href="dubai">Dubai</a></h3>
                 </div>
 
                 <div className="grid-item image-container">
-                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px" }} src={bali} />
-                    <h3 className="image-title"><a style={{ textDecoration: "none", color: "white" }} href="#">Bali</a></h3>
+                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px" }} src={bali} city="Bali" onClick={handleClick} />
+                    <h3 className="image-title"><a style={{ textDecoration: "none", color: "white" }} href="#" >Bali</a></h3>
                 </div>
 
                 <div className="grid-item image-container">
-                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px" }} src={london} />
+                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px" }} src={london} city="London" onClick={handleClick} />
                     <h3 className="image-title"><a style={{ textDecoration: "none", color: "white" }} href="#">London</a></h3>
                 </div>
 
                 <div className="grid-item image-container">
-                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px" }} src={rome} />
+                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px" }} src={rome} city="Rome" onClick={handleClick} />
                     <h3 className="image-title"><a style={{ textDecoration: "none", color: "white" }} href="#">Rome</a></h3>
                 </div>
 
                 <div className="grid-item image-container">
-                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px",  }} src={paris} />
+                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px",  }} src={paris} city="Paris" onClick={handleClick} />
                     <h3 className="image-title"><a style={{ textDecoration: "none", color: "white" }} href="#">Paris</a></h3>
                 </div>
                 <div className="grid-item image-container">
-                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px",  }} src={cancun} />
+                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px",  }} src={cancun} city="Cancun" onClick={handleClick} />
                     <h3 className="image-title"><a style={{ textDecoration: "none", color: "white" }} href="#">Cancun</a></h3>
                 </div>
             </div>

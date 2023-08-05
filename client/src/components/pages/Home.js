@@ -14,7 +14,7 @@ export default function Home() {
             <Card.Img className="card-image" src={snorkelImg} alt="Go snorkeling in Cancun!" />
                 <Card.ImgOverlay className='img-overlay'>
                     <Navigation />
-                    <ChatGPT/>
+                    <ChatGPT />
                 </Card.ImgOverlay>
         </Card>
 
