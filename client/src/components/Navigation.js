@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SignUpForm from './signupForm';
 import LoginForm from './loginForm';
-import myTrips from './pages/MyTrips';
-import ChatGPT from './ChatGPT';
 import Auth from '../utils/auth';
-import { Form, Button, Alert, Nav, Modal, Navbar, Container } from "react-bootstrap";
+import {Nav, Modal, Navbar, Container } from "react-bootstrap";
 
-const AppNavbar = () => {
+const Navigation = () => {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -23,7 +21,7 @@ const AppNavbar = () => {
                         {/* The navbar will show these links after you log in */}
                         {!Auth.loggedIn()? (
                         <>
-                        <Nav.Link as={Link} to='/MyTrips'>
+                        <Nav.Link as={Link} to='/mytrips'>
                         My Trips
                         </Nav.Link>
                         <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
@@ -58,4 +56,4 @@ const AppNavbar = () => {
     );
 };
 
-export default AppNavbar;
+export default Navigation;

@@ -7,10 +7,11 @@ const  mongoose = require("mongoose");
 const { typeDefs, resolvers } = require("./schemas");
 const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
+require('dotenv').config();
 
 //Setup Open Ai connection
 const config = new Configuration({
-  apiKey: "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"
+  apiKey: process.env.OPEN_AI_KEY
 })
 
 const openai = new OpenAIApi(config);
@@ -27,7 +28,7 @@ app.post("/chat", async (req, res) => {
     model: "text-davinci-003",
     max_tokens: 512,
     temperature: 0,
-    prompt: prompt,
+    prompt: `You are a travel assistant that provides recommended activities to users based on the destination provided. Given the following destination, please include some information about the destination and list the most popular activities in the destination, numbered from 1-10.` + prompt,
   });
   res.send((await completion).data.choices[0].text);
 })

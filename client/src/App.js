@@ -5,10 +5,6 @@ import { setContext } from '@apollo/client/link/context';
 import Home from './components/pages/Home';
 
 import MyTrips from './components/pages/MyTrips'
-import './index.css';
-// import SearchLocation from './pages/SearchLocation';
-// import Navbar from './components/Navbar';
-
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -39,10 +35,9 @@ export default function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
-          {/* <Navbar /> */}
           <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/MyTrips' element={<MyTrips />} />
+          <Route path='/mytrips' element={<MyTrips />} />
           {/* Catch all path if user navigates to a path that does not exist */}
             <Route path='*' element={<h1 className="display-2">Wrong page!</h1>} />
           </Routes>
