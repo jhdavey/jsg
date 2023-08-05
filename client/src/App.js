@@ -5,9 +5,7 @@ import { setContext } from '@apollo/client/link/context';
 import Home from './components/pages/Home';
 
 import MyTrips from './components/pages/MyTrips'
-
-// import SearchLocation from './pages/SearchLocation';
-// import Navbar from './components/Navbar';
+import Navigation from './components/Navigation';
 
 
 // Construct our main GraphQL API endpoint
@@ -39,7 +37,7 @@ export default function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
-          {/* <Navbar /> */}
+          <Navigation />
           <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/MyTrips' element={<MyTrips />} />

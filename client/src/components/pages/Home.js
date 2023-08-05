@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ChatGPT from "../ChatGPT";
-import Navbar from '../NavBar';
+import Navigation from '../Navigation';
 
 export default function Home() {
     return (
-        <div>
-            <Navbar />
+        <>
             <ChatGPT />
-        </div>
+        </>
     )
     }
