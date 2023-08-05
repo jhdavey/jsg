@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import Home from './components/pages/Home';
-import Navbar from './components/NavBar';
+import Navbar from './components/Navigation';
 import MyTrips from './components/pages/MyTrips'
 
 // import SearchLocation from './pages/SearchLocation';
@@ -38,12 +38,11 @@ export default function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
-          <Navbar />
           <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/MyTrips' element={<MyTrips />} />
+          <Route path='/mytrips' element={<MyTrips />} />
           {/* Catch all path if user navigates to a path that does not exist */}
-          <Route path='*' element={<h1 className="display-2">Wrong page!</h1>}/>
+            <Route path='*' element={<h1 className="display-2">Wrong page!</h1>} />
           </Routes>
         </>
       </Router>
