@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import dubai from '../assets/dubai.jpeg';
+import bali from '../assets/bali.webp';
+import london from '../assets/london.jpeg';
+import rome from '../assets/rome.jpeg';
+import paris from '../assets/paris.jpeg';
+import cancun from '../assets/cancun.jpeg';
 
 
 
 function TopDestinations() {
+
+    // const handleSave = (e) => {
+    //     e.preventDefault();
+    //     console.log(e.target.value);
+    // }
 
     return (
         
@@ -12,31 +23,31 @@ function TopDestinations() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(370px, 1fr))", gap: "1rem", marginTop: "25px" }}>
 
                 <div className="grid-item image-container">
-                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px"}} src="../assets/dubai.jpeg" />
+                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px"}} src={dubai} />
                     <h3 className="image-title"><a style={{ textDecoration: "none", color: "white" }} href="#">Dubai</a></h3>
                 </div>
 
                 <div className="grid-item image-container">
-                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px" }} src="../assets/bali.webp" />
+                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px" }} src={bali} />
                     <h3 className="image-title"><a style={{ textDecoration: "none", color: "white" }} href="#">Bali</a></h3>
                 </div>
 
                 <div className="grid-item image-container">
-                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px" }} src="../assets/london.jpeg" />
+                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px" }} src={london} />
                     <h3 className="image-title"><a style={{ textDecoration: "none", color: "white" }} href="#">London</a></h3>
                 </div>
 
                 <div className="grid-item image-container">
-                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px" }} src="../assets/rome.jpeg" />
+                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px" }} src={rome} />
                     <h3 className="image-title"><a style={{ textDecoration: "none", color: "white" }} href="#">Rome</a></h3>
                 </div>
 
                 <div className="grid-item image-container">
-                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px",  }} src="../assets/paris.jpeg" />
+                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px",  }} src={paris} />
                     <h3 className="image-title"><a style={{ textDecoration: "none", color: "white" }} href="#">Paris</a></h3>
                 </div>
                 <div className="grid-item image-container">
-                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px",  }} src="../assets/cancun.jpeg" />
+                    <img className="hoverable-image" style={{ maxWidth: "100%", borderRadius: "10px",  }} src={cancun} />
                     <h3 className="image-title"><a style={{ textDecoration: "none", color: "white" }} href="#">Cancun</a></h3>
                 </div>
             </div>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Edu+NSW+ACT+Foundation:wght@700&family=Nunito&family=Roboto&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -12,10 +14,58 @@ code {
     monospace;
 }
 
-.chat-form {
-  display: flex;
-  justify-content: center;
+/* Chatgpt and Home card Input/Output styling */
+.card-image {
+  height: 750px;
 }
+
+.chat-form {
+  margin-top: 10px;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  padding: 20px;
+  opacity: .75;
+  border-radius: 20px;
+}
+
+.img-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chat-label {
+  font-family: 'Nunito', Arial, Helvetica, sans-serif;
+  font-size: large;
+  margin-right: 10px;
+}
+
+.chat-input {
+  border-radius: 20px;
+  padding: 8px;
+}
+
+.output {
+  margin-top: 10px;
+}
+
+.savable-buttons {
+  margin: 2px;
+  border-radius: 10px;
+  padding: 10px;
+  background: gray;
+  border: none;
+  color: white;
+}
+.savable-buttons:hover {
+  padding: 8px;
+}
+/* End styling for chatgpt and Home card */
 
 /* Styling for TopDestinations.js */
 .hoverable-image {
