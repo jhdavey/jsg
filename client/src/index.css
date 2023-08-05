@@ -16,3 +16,32 @@ code {
   display: flex;
   justify-content: center;
 }
+
+/* Styling for TopDestinations.js */
+.hoverable-image {
+  transition: transform 0.2s; /* Animation */
+  position: relative; /* For z-index to work, the position property needs to be set to anything except static. */
+  z-index: 1; 
+}
+.hoverable-image:hover {
+  transform: scale(1.08); /* (110% normal size) */
+  z-index: 2;
+
+}
+.image-container {
+  position: relative;
+}
+
+.image-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: white; /* or any color that will be visible on your images */
+  padding: 10px; /* adjust as needed */
+  background-color: rgba(0, 0, 0, 0.2); /* adds a semi-transparent black background. adjust as needed */
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+/* End of styling for TopDestinations.js */
