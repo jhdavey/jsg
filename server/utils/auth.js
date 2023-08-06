@@ -37,7 +37,7 @@ module.exports = {
   //   Function to sign a new token for a user
   signToken: function ({ username, email, _id }) {
     const payload = { username, email, _id };
-
+    console.log(payload);
     // Generate a new JWT token containing user data
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
