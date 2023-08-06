@@ -2,8 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const { Configuration, OpenAIApi} = require("openai");
-const { graphqlHTTP } = require('express-graphql');
-const  mongoose = require("mongoose");
 const { typeDefs, resolvers } = require("./schemas");
 const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
@@ -62,7 +60,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app });
 
-  const PORT = 3001;
+  const PORT = process.env.PORT||3001;
 
   db.once("open", () => {
     app.listen(PORT, () => {

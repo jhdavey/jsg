@@ -13,11 +13,19 @@ const resolvers = {
   },
   Mutation: {
 // ADD MUTATIONS TO CREATE USERS, LOCATIONS HERE
+    
     addUser: async (parent, args) => {
-      const user = await User.create(args);
+      try {
+        const user = await User.create(args);
       const token = signToken(user);
 
       return { token, user };
+      }
+      catch (err) {
+        console.log(err)
+        throw new AuthenticationError('Something went wrong!');
+      }
+      
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
