@@ -1,43 +1,20 @@
-import decode from 'jwt-decode';
+const decode = require('jwt-decode');
 
-class AuthService {
-    getProfile() {
-        return decode(this.getToken());
-      }
-    loggedIn() {
-    const token = this.getToken();
-    return !!token && !this.isTokenExpired(token);
+module.exports = (context) => {
+    //context - { ...headers }
+    const authHeader = context.req.headers.authorization;
+    if (authHeader) {
+        //Bearer ....
+    const token = authHeader.split('Bearer')[1];
+    if (token) {
+        try {
+            const user = decode.verify(token, "UNSAFE_STRING");
+            return user;
+        } catch (err) {
+            throw new Error('Invalid/Expired token');
+        }
     }
-
-    // check if token is expired
-    isTokenExpired(token) {
-    try {
-        const decoded = decode(token);
-        if (decoded.exp < Date.now() / 1000) {
-        return true;
-        } else return false;
-    } catch (err) {
-        return false;
+    throw new Error("Authentication token must be 'Bearer [token]'");
     }
-    }
-
-    getToken() {
-    // Retrieves the user token from localStorage
-    return localStorage.getItem('id_token');
-    }
-
-    login(idToken) {
-    // Saves user token to localStorage
-    localStorage.setItem('id_token', idToken);
-    window.location.assign('/');
-    }
-
-    logout() {
-    // Clear user token and profile data from localStorage
-    localStorage.removeItem('id_token');
-    // this will reload the page and reset the state of the application
-    window.location.assign('/');
-    }
+    throw new Error('Authorization header must be provided');
 }
-
-export default new AuthService();

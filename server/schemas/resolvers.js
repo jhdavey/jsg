@@ -1,5 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Trip, Activity } = require('../models');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 module.exports = {
     Query: {
@@ -20,23 +22,61 @@ module.exports = {
     Mutation: {
         // Start User Mutations
         createUser: async (_, { username, email, password }) => {
-            const user = await User.create({ username, email, password });
-            return { user };
+            const oldUser = await User.findOne({ email });
+
+            if (oldUser) {
+                throw new AuthenticationError('Email is already registered...');
+            }
+
+            var encryptedPassword = await bcrypt.hash(password, 10);
+
+            const user = await User.create({
+                 username: username,
+                 email: email.toLowerCase(),
+                 password: encryptedPassword 
+                });
+
+            const token = jwt.sign(
+                { user_id: user._id, email },
+                //For basics, using "UNSAFE_STRING" for JWT
+                "UNSAFE_STRING",
+                {
+                    expiresIn: "2h"
+                }
+            );
+            user.token = token;
+
+            const res = await user.save();
+
+            return {
+                id: res.id,
+                ...res._doc
+            };
         },
         login: async (_, { email, password }) => {
         const user = await User.findOne({ email });
-    
-        if (!user) {
-            throw new AuthenticationError('No user found with this email address');
+
+        if (user && (await bcrypt.compare(password, user.password))) { 
+
+            const token = jwt.sign(
+                { user_id: user._id, email },
+                //For basics, using "UNSAFE_STRING" for JWT
+                "UNSAFE_STRING",
+                {
+                    expiresIn: "2h"
+                }
+            );
+
+            user.token = token;
+
+            return {
+                id: user.id,
+                ...user._doc
+            }
+
+        } else {
+            throw new AuthenticationError('Email or password incorrect...');
         }
-    
-        const correctPw = await user.isCorrectPassword(password);
-    
-        if (!correctPw) {
-            throw new AuthenticationError('Incorrect credentials');
-        }
-    
-        return { user };
         },
         // End User Mutations
 
