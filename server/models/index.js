@@ -1,6 +1,4 @@
-
-
-const User= require('./User');
+const User = require('./User');
 
 const Location = require('./Location');
 

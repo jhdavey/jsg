@@ -1,10 +1,12 @@
 const express = require("express");
+const { ApolloServer } = require("apollo-server-express");
+const path = require("path");
+
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const { Configuration, OpenAIApi} = require("openai");
 const { typeDefs, resolvers } = require("./schemas");
-const { ApolloServer } = require("apollo-server-express");
-const path = require("path");
+
 require('dotenv').config();
 //Setup Open Ai connection
 const config = new Configuration({
@@ -28,7 +30,6 @@ app.post("/chat", async (req, res) => {
   res.send((await completion).data.choices[0].text);
 })
 
-app.use(express.json());
 
 // import user defined files
 const { authMiddleware } = require('./utils/auth');
@@ -45,6 +46,7 @@ const server = new ApolloServer({
 
 // middleware
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // serve client/build as static assets while in production
 if (process.env.NODE_ENV === "production") {
@@ -56,7 +58,7 @@ app.get("/", (req, res) => {
 });
 
 // new instance of an Apollo server with GraphQL schema
-const startApolloServer = async (typeDefs, resolvers) => {
+const startApolloServer = async () => {
   await server.start();
   server.applyMiddleware({ app });
 
@@ -65,9 +67,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
   db.once("open", () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
-      console.log(
-        `Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`
-      );
+      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
     });
   });
 };

@@ -8,7 +8,7 @@ import { LOGIN_USER } from "../utils/mutations";
 
 const LoginForm = () => {
   // State to store form data
-  const [userFormData, setUserFormData] = useState({ email: "", password: "" });
+  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   // State for form validation
   const [validated] = useState(false);
   // State to show or hide the alert for login errors
@@ -35,26 +35,27 @@ const LoginForm = () => {
     try {
       // Call the login mutation with the form data
       const { data } = await login({
-        variables: userFormData,
+        variables: { ...userFormData},
       });
       // If login is successful then save the login token to the Auth utility
+      console.log(data);
       Auth.login(data.login.token);
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
+    } catch (e) {
+      console.error(e);
+      // setShowAlert(true);
     }
 
     // Reset form fields after form submission
     setUserFormData({
-      username: "",
-      email: "",
-      password: "",
+      // username: "",
+      email: '',
+      password: '',
     });
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <>
