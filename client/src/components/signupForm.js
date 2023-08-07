@@ -1,75 +1,46 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/authContext";
+import { useForm } from "../utils/hooks";
+import { useMutation } from "@apollo/client";
+import { useNavigate } from 'react-router-dom';
 import { Form, Button, Alert } from "react-bootstrap";
-import Auth from "../utils/auth";
 // Apollo GraphQL
 import { ADD_USER } from "../utils/mutations";
-import { useMutation } from "@apollo/client";
+
+
 
 const SignupForm = () => {
-  // set initial form state
-  const [userFormData, setUserFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-  // set state for form validation
-  const [validated] = useState(false);
-  // set state for alert
-  const [showAlert, setShowAlert] = useState(false);
+  const context = useContext(AuthContext);
+  let navigate = useNavigate();
+  const [errors, setErrors] = useState([]);
 
-  // get function 'addUser' returned by useMutation hook
-  // to execute the ADD_USER mutation - code below
-  const [addUser, { loading }] = useMutation(ADD_USER);
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-  };
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    try {
-      const { data } = await addUser({
-        variables: userFormData,
-      });
-      Auth.login(data.addUser.token);
-      console.log(data.addUser.token);
-    } catch (err) {
-      console.log(err);
-      setShowAlert(true);
-    }
-
-    setUserFormData({
-      username: "",
-      email: "",
-      password: "",
-    });
-  };
-
-  if (loading) {
-    return <div>Loading...</div>;
+  function createUserCallback() {
+    console.log('Callback hit...');
+    createUser();
   }
+
+  const { onChange, onSubmit, values } = useForm(createUserCallback, {
+    username: '',
+    email: '',
+    password: ''
+  });
+
+  const [ createUser, { loading }] = useMutation(ADD_USER, {
+    update(proxy, { data: { createUser: userData }}) {
+      context.login(userData);
+      navigate('/');
+    },
+    onError({ graphQLErrors }) {
+      setErrors(graphQLErrors);
+    },
+    variables: { createUser: values }
+  })
 
   return (
     <>
       {/* This is needed for the validation functionality above */}
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Form>
         {/* show alert if server response is bad */}
-        <Alert
-          dismissible
-          onClose={() => setShowAlert(false)}
-          show={showAlert}
-          variant="danger"
-        >
-          Something went wrong with your signup!
-        </Alert>
 
         <Form.Group>
           <Form.Label htmlFor="username">Username</Form.Label>
@@ -77,8 +48,7 @@ const SignupForm = () => {
             type="text"
             placeholder="Your username"
             name="username"
-            onChange={handleInputChange}
-            value={userFormData.username}
+            onChange={onChange}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -92,8 +62,7 @@ const SignupForm = () => {
             type="email"
             placeholder="Your email address"
             name="email"
-            onChange={handleInputChange}
-            value={userFormData.email}
+            onChange={onChange}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -107,8 +76,7 @@ const SignupForm = () => {
             type="password"
             placeholder="Your password"
             name="password"
-            onChange={handleInputChange}
-            value={userFormData.password}
+            onChange={onChange}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -116,18 +84,18 @@ const SignupForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
         <Button
-          disabled={
-            !(
-              userFormData.username &&
-              userFormData.email &&
-              userFormData.password
-            )
-          }
-          type="submit"
           variant="success"
+          onClick={onSubmit}
         >
           Submit
         </Button>
+        {errors.map(function(error){
+          return (
+            <Alert severity="error">
+              {error.message}
+            </Alert>
+          )
+        })}
       </Form>
     </>
   );
