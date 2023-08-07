@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
-import Auth from "../utils/auth";
 
 // GraphQL API
 import { useMutation } from "@apollo/client";
@@ -37,8 +36,6 @@ const LoginForm = () => {
       const { data } = await login({
         variables: userFormData,
       });
-      // If login is successful then save the login token to the Auth utility
-      Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);

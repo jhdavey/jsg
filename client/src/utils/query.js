@@ -1,3 +1,5 @@
+
+// NEED TO QUERY TRIPS AND ACTIVITIES 
 export const QUERY_USER = gql`
   {
     user {

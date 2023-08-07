@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const { Trip } = require('../models/Trip');
 
 const userSchema = new Schema({
   username: {
@@ -16,10 +17,10 @@ const userSchema = new Schema({
     required: true,
     unique: true,
   },
-  savedLocation: [
+  trips: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Location',
+      ref: 'Trip',
     }
   ],
 },
