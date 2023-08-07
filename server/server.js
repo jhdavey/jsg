@@ -8,15 +8,31 @@ const { typeDefs, resolvers } = require("./schemas");
 const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
 require('dotenv').config();
+
 //Setup Open Ai connection
 const config = new Configuration({
   apiKey: process.env.OPEN_AI_KEY
 })
 
+const openai = new OpenAIApi(config);
+
 //Initialize instance of express server
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ['http://localhost:3000'], // Add your client-side URL here
+  })
+);
+
+app.use((err, req, res, next) => {
+  if (err.name === "UnauthorizedError") {
+    // If the error is due to an invalid token, send a 401 Unauthorized response
+    return res.status(401).json({ message: "Unauthorized: Invalid or expired token." });
+  }
+  // For other errors, send a 500 Internal Server Error response
+  return res.status(500).json({ message: "Internal Server Error." });
+});
 
 app.post("/chat", async (req, res) => {
   const {prompt} = req.body;

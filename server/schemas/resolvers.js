@@ -13,11 +13,20 @@ const resolvers = {
   },
   Mutation: {
 // ADD MUTATIONS TO CREATE USERS, LOCATIONS HERE
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
+    addUser: async (parent, { username, email, password }) => {
+    try {
+      const existingUser = await User.findOne({email});
+      if (existingUser) {
+        throw new Error('User already exists with this email.');
+      }
 
-      return { token, user };
+      const newUser = await User.create({ username, email, password });
+      const token = signToken(newUser);
+
+      return { token, user: newUser };
+    } catch (err) {
+      throw new Error('Error creating user.');
+    }
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
