@@ -1,76 +1,68 @@
-const { User, Location } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
-const { signToken } = require('../utils/auth');
+const { User, Trip, Activity } = require('../models');
 
-const resolvers = {
-  Query: {
-    user: async () => {
-      return User.find({});
+module.exports = {
+    Query: {
+        //Start User Queries
+        users: async () => User.find().populate('trips'),
+        user: async (_, { username }) => User.findOne({ username }).populate('trips'),
+        // End User Queries
+
+        // Start Trip Queries
+        trips: async (_, { username }) => {
+            const params = username ? { username } : {};
+            return Trip.find(params);
+        },
+        trip: async (_, { tripId }) => Trip.findOne({ _id: tripId })
+        // End Trip Queries
     },
-    myTrips: async () => {
-      return Location.find({});
-    },
-  },
-  Mutation: {
-// ADD MUTATIONS TO CREATE USERS, LOCATIONS HERE
-    addUser: async (parent, { username, email, password }) => {
-    try {
-      const existingUser = await User.findOne({email});
-      if (existingUser) {
-        throw new Error('User already exists with this email.');
-      }
 
-      const newUser = await User.create({ username, email, password });
-      const token = signToken(newUser);
+    Mutation: {
+        // Start User Mutations
+        createUser: async (_, { username, email, password }) => {
+            const user = await User.create({ username, email, password });
+            return { user };
+        },
+        login: async (_, { email, password }) => {
+        const user = await User.findOne({ email });
+    
+        if (!user) {
+            throw new AuthenticationError('No user found with this email address');
+        }
+    
+        const correctPw = await user.isCorrectPassword(password);
+    
+        if (!correctPw) {
+            throw new AuthenticationError('Incorrect credentials');
+        }
+    
+        return { user };
+        },
+        // End User Mutations
 
-      return { token, user: newUser };
-    } catch (err) {
-      throw new Error('Error creating user.');
-    }
-    },
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
-
-      if (!user) {
-        throw new AuthenticationError('Incorrect credentials');
-      }
-
-      const correctPw = await user.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
-      }
-
-      const token = signToken(user);
-      return { token, user };
-    },
-    saveLocation: async (parent, { locationData }, context) => {
-      if (context.user) {
-        const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { savedLocation: locationData } },
-          { new: true }
+        // Start Trip & Activity Mutations
+        addTrip: async (_, { userId, destination }) => {
+        const trip = await Trip.create({ destination });
+    
+        await User.findOneAndUpdate(
+            { _id: userId },
+            { $addToSet: { trips: trip } },
+            { new: true }
         );
-
-        return updatedUser;
-      }
-
-      throw new AuthenticationError('You need to be logged in!');
+    
+        return trip;
+        },
+        addActivity: async (_, { tripId, activityName }) => {
+            const activity = await Activity.create({ activityName });
+        
+            await Trip.findOneAndUpdate(
+                { _id: tripId },
+                { $addToSet: { activities: activity } },
+                { new: true }
+            );
+        
+            return activity;
+            },
+        // End Trip & Activity Mutations
     },
-    removeLocation: async (parent, { locationId }, context) => {
-      if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { savedLocation: { locationId } } },
-          { new: true }
-        );
-
-        return updatedUser;
-      }
-
-      throw new AuthenticationError('You need to be logged in!');
-    },
-  },
 };
-
-module.exports = resolvers;
