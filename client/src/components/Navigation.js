@@ -69,7 +69,7 @@ const Navigation = () => {
     const [mode, setMode] = useState('login'); // Added mode state to manage login/signup
     const handleModalClose = () => {
         setShowModal(false);
-        setMode('login'); // Reset mode when modal is closed
+        setMode(''); // Reset mode when modal is closed
     };
     return (
         <>

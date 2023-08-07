@@ -20,7 +20,7 @@ const SignupForm = () => {
 
   // get function 'addUser' returned by useMutation hook
   // to execute the ADD_USER mutation - code below
-  const [addUser, { loading }] = useMutation(ADD_USER);
+  const [addUser, { error }] = useMutation(ADD_USER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;

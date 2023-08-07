@@ -23,7 +23,7 @@ const resolvers = {
       }
       catch (err) {
         console.log(err)
-        throw new AuthenticationError('Something went wrong!');
+        throw new AuthenticationError('Something went wrong in resolvers line 26!');
       }
       
     },
