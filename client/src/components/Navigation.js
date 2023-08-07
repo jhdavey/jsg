@@ -4,6 +4,7 @@ import SignUpForm from '../components/signupForm';
 import LoginForm from '../components/loginForm';
 import Auth from '../utils/auth';
 import { Nav, Modal, Navbar, Container } from 'react-bootstrap';
+
 const Navigation = () => {
     const [showModal, setShowModal] = useState(false);
     const [mode, setMode] = useState('login'); // Added mode state to manage login/signup
@@ -21,16 +22,16 @@ const Navigation = () => {
                  <Navbar.Toggle aria-controls='navbar' />
                  <Navbar.Collapse id='navbar'>
                      <Nav>
-                         {!Auth.loggedIn()? (
+                         {/* {!Auth.loggedIn()? (
                         <>
                         <Nav.Link as={Link} to='/mytrips'>
                         My Trips
                         </Nav.Link>
                         <Nav.Link onClick={Auth.login}>Login</Nav.Link>
                         </>
-                        ) : (
+                        ) : ( */}
                         <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
-                        )}
+                        {/* )} */}
                     </Nav>
                 </Navbar.Collapse>  
             </Container>
