@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import Auth from "../utils/auth";
-
 // GraphQL API
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
@@ -40,9 +39,9 @@ const LoginForm = () => {
       // If login is successful then save the login token to the Auth utility
       console.log(data);
       Auth.login(data.login.token);
-    } catch (e) {
-      console.error(e);
-      // setShowAlert(true);
+    } catch (err) {
+      console.error(err);
+      setShowAlert(true);
     }
 
     // Reset form fields after form submission

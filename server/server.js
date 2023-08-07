@@ -8,27 +8,36 @@ const { Configuration, OpenAIApi} = require("openai");
 const { typeDefs, resolvers } = require("./schemas");
 
 require('dotenv').config();
-//Setup Open Ai connection
+
+//Initialize instance of express server
+const app = express();
+
+//Start middleware
+app.use(bodyParser.json());
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+//End middleware
+
+//Start Open Ai connection setup
 const config = new Configuration({
   apiKey: process.env.OPEN_AI_KEY
 })
 
-//Initialize instance of express server
-const app = express();
-app.use(bodyParser.json());
-app.use(cors());
-
 app.post("/chat", async (req, res) => {
   const {prompt} = req.body;
+
+  const openai = new OpenAIApi(config);
   
   const completion = openai.createCompletion({
     model: "text-davinci-003",
     max_tokens: 512,
     temperature: 0,
-    prompt: `You are a travel assistant that provides recommended activities to users based on the destination provided. Given the following destination, please include some information about the destination and list the most popular activities in the destination, numbered from 1-10.` + prompt,
+    prompt: `You are a travel assistant that provides recommended activities to users based on the destination provided. Given the following destination, please include some information about the destination and list the most popular activities in the destination, numbered from 1-10. Do not provide answers unless the query includes a recognizable city, province, parish, state, country, or continent.` + prompt,
   });
   res.send((await completion).data.choices[0].text);
 })
+//End Open Ai connection setup
 
 
 // import user defined files
@@ -40,8 +49,7 @@ const db = require("./config/connection");
 // instance of Apollo server. pass in schema data
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
-  context: authMiddleware,
+  resolvers
 });
 
 // middleware
@@ -74,3 +82,23 @@ const startApolloServer = async () => {
 
 // Call async function to start the server
 startApolloServer(typeDefs, resolvers);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/"));
+});
+
+

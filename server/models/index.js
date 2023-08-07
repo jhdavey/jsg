@@ -1,5 +1,5 @@
-const User = require('./User');
+const User= require('./User');
+const Trip = require('./Trip');
+const Activity = require('./Activity');
 
-const Location = require('./Location');
-
-module.exports = { User, Location };
+module.exports = { User, Trip, Activity };

@@ -37,15 +37,18 @@ export default function ChatGPT() {
         {/* ChatGPT Prompt Input */}
         <div className="chat-container">
             <form className="chat-form" onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="" className="chat-label" style={{ fontStyle: "italic" }}>Where would you like to go? </label>
+                <div className="form-group" style={{ display: "flex" }}>
+                <div>
+                <label htmlFor="" className="chat-label">Where would you like to go?</label><br />
+                <label htmlFor="" className="chat-label" style={{ fontStyle: "italic", fontSize: "small" }}>Must enter a city, state, or country.</label>
+                </div>
                     <input type="text" className="chat-input" placeholder="Enter your destination" value={prompt} onChange={handlePrompt} />
                 </div>
             </form>
 
             {/* ChatGPT savable list Output section */}
             <div className="output">
-                <h3>{activityList < 10 ? '' : `Top 10 activities to do in ${prompt}`}</h3>
+                <h4>{activityList < 10 ? '' : `Top 10 activities to do in ${prompt}:`}</h4>
                     {/*  This maps each array item to a div adds the style declared above and return it */
                         activityList.map(act => 
                             <div key={act} value={act}>

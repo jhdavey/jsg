@@ -20,10 +20,10 @@ const userSchema = new Schema(
     required: true,
     //unique not required
   },
-  savedLocation: [
+  trips: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Location',
+      ref: 'Trip',
     }
   ],
 },
