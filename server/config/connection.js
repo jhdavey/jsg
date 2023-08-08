@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const MONGODB_URI = "mongodb://127.0.0.1:27017/jsg";
+const LOCALHOST = "mongodb://127.0.0.1:27017/jsg";
 
-mongoose.connect(MONGODB_URI, {useNewUrlParser: true})
+mongoose.connect(process.env.MONGODB_URI || LOCALHOST, {useNewUrlParser: true})
     .then(() => {
         console.log('MongoDB Connected!');
     });
