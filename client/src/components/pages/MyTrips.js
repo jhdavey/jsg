@@ -4,9 +4,13 @@ import { useQuery, gql } from "@apollo/client";
 // got rid of hotel, flight, and destination. adding Name
 const GET_MY_TRIPS = gql`
   query GetMyTrips {
-    myTrips {
+    trips {
       _id
-      name
+      destination
+      savedActivities {
+        _id
+        activityName
+      }
     }
   }
 `;
@@ -21,13 +25,20 @@ export default function MyTrips () {
   return (
     <div>
       <h2>My Trips</h2>
-      {data.myTrips.length === 0 ? (
+      {data.trips.length === 0 ? (
         <p>No trips added yet.</p>
       ) : (
         <ul>
-          {data.myTrips.map((trip) => (
+          {data.trips.map((trip) => (
             <li key={trip._id}>
-              <strong>Destination:</strong> {trip.name},{" "}
+              <strong>Destination:</strong> {trip.destination},{" "}
+              <ul>
+                {trip.savedActivties.map((activity) => (
+                  <li key={activity._id}>
+                    <strong>Activity:</strong> {activity.activityName}
+                    </li>
+                ))}
+              </ul>
               {/* <strong>Hotel:</strong> {trip.hotel}, <strong>Flight:</strong>{" "} */}
               {/* {trip.flight} */}
             </li>
