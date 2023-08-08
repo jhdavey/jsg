@@ -97,3 +97,26 @@ code {
 }
 
 /* End of styling for TopDestinations.js */
+
+.mytrips {
+  height: 100vh;
+  background-image: url('../src/assets/rome.jpeg');
+  background-size: cover;
+}
+
+.triplist{
+  margin:auto;
+  background-color: black;
+  padding: 20px 20px 15px 20px;
+  opacity: .85;
+  border-radius: 20px;
+  margin-top: 20px;
+  color: white;
+  width: 500px;
+}
+
+.tripnav {
+  display: flex;
+  justify-content: center;
+
+}

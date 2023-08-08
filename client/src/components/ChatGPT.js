@@ -97,7 +97,7 @@ export default function ChatGPT() {
                 {!prompt ? '' :
                     <h4>My Trip: {prompt}</h4>
                 }
-                    {prompt.length > 3 ? 'Loading awesome activities for your trip...' : ''}
+                    {activityList.length < 10 ? 'Loading awesome activities for your trip...' : ''}
                         <ul> 
                             {MyTrips.map((activity, index) => (
                                 <li key={index}>{activity}</li>
