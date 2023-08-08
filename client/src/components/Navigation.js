@@ -31,7 +31,7 @@ const Navigation = () => {
                      <Nav>
                          { user ? (
                         <>
-                        <Nav.Link as={Link} to='/MyTrips'>
+                        <Nav.Link as={Link} to='/mytrips'>
                         My Trips
                         </Nav.Link>
                         <Nav.Link onClick={onLogout}>Logout</Nav.Link>
