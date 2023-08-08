@@ -80,11 +80,11 @@ module.exports = {
         // End User Mutations
 
         // Start Trip & Activity Mutations
-        addTrip: async (_, { userId, destination }) => {
+        addTrip: async (_, { username, destination }) => {
         const trip = await Trip.create({ destination });
     
         await User.findOneAndUpdate(
-            { _id: userId },
+            { username: username },
             { $addToSet: { trips: trip } },
             { new: true }
         );

@@ -13,7 +13,7 @@ function TopDestinations() {
     // Get city when clicked and set autoPrompt variable
     const handleClick = event => {
         setAutoPrompt(event.target.getAttribute('city'));
-        console.log(autoPrompt);
+        localStorage.setItem('autoPrompt', autoPrompt);
       };
 
     return (

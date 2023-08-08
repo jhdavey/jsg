@@ -1,5 +1,18 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useMutation, gql } from "@apollo/client";
+
+// SAVE USER'S TRIP
+const ADD_TRIP = gql`
+mutation addTrip($username: String!) {
+    addTrip(username: $username, destination: $destination) {
+        _id
+        destination
+      }
+    }
+`;
+
+
 
 
 export default function ChatGPT() {
@@ -7,7 +20,7 @@ export default function ChatGPT() {
     const [response, setResponse] = useState("");
     const [activityList, setActivityList] = useState([]);
     const [MyTrips, setMyTrips] = useState([]);
-    const HTTP = "http://localhost:3001/chat";
+    const HTTP = "http://localhost:3001/chat"; 
 
     //Once response is set from Chatbot, pull out numbered list, create an array, then map over array to create a list of activites
     const createList = () => {
@@ -29,11 +42,29 @@ export default function ChatGPT() {
     const handlePrompt = (e) => setPrompt(e.target.value);
 
     function saveActivity(e) {
-        //TODO - Need to update this to save to trip instead of just console logging
-        console.log(e.target.value);
         const activity = e.target.value;
         setMyTrips((prevTrips) => [...prevTrips, activity])
     }
+
+    const currentUser = localStorage.username;
+
+    // const [ addTrip, { loading }] = useMutation(ADD_TRIP, {
+    //     variables: { 
+    //         username: currentUser,
+    //         destination: prompt,
+    //     }
+    // })
+
+    function saveTrip() {
+    const trip = { 
+        destination: prompt,
+        activities: MyTrips,
+    };
+    console.log(prompt);
+    console.log(trip);
+    // addTrip();
+    
+};
 
     return (
     <>
@@ -63,11 +94,21 @@ export default function ChatGPT() {
             </div>
             {/* Show myTrips */}
                 <div className="my-trips">
-                    <h4>My Trips:</h4>
-                    <ul> {MyTrips.map((trip, index) => (
-                        <li key={index}>{trip}</li>
-                    ))}
-                    </ul>
+                {!prompt ? '' :
+                    <h4>My Trip: {prompt}</h4>
+                }
+                    {prompt.length > 3 ? 'Loading awesome activities for your trip...' : ''}
+                        <ul> 
+                            {MyTrips.map((activity, index) => (
+                                <li key={index}>{activity}</li>
+                            ))}
+                        </ul>
+                    
+                    {activityList < 10 ? '' : 
+                        <button value={MyTrips} onClick={saveTrip} className="savable-buttons">
+                            Save My Trip
+                        </button>
+                        }
                 </div>
         </div>
     </>
