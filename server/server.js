@@ -55,7 +55,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app });
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 db.once("open", () => {
   app.listen(PORT, () => {
