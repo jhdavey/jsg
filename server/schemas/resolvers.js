@@ -2,7 +2,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 const { User, Trip, Activity } = require('../models');
 
-module.exports = {
+const resolvers = {
     Query: {
         //Start User Queries
         users: async () => User.find().populate('trips'),
@@ -23,10 +23,10 @@ module.exports = {
   },
   Mutation: {
 // ADD MUTATIONS TO CREATE USERS, LOCATIONS HERE
-createUser: async (_, { username, email, password }) => {
-    const user = await User.create({ username, email, password });
-    return { user };
-},
+// createUser: async (_, { username, email, password }) => {
+//     const user = await User.create({ username, email, password });
+//     return { user };
+// },
     
     addUser: async (parent, args) => {
       try {
@@ -88,3 +88,5 @@ createUser: async (_, { username, email, password }) => {
         // End Trip & Activity Mutations
     },
 };
+
+module.exports = resolvers;

@@ -5,8 +5,12 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
-    password: String
     trips: [Trip]!
+  }
+
+  type Auth {
+    token: ID!
+    user: User
   }
 
   type Trip {
@@ -41,7 +45,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createUser(username: String!, email: String!, password: String!): User
+    
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addTrip(userId: ID!, destination: String!): Trip
@@ -50,3 +54,5 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
+
+//// createUser(username: String!, email: String!, password: String!): User
