@@ -13,15 +13,16 @@ export const ADD_USER = gql`
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
+      token
       user {
-        _id
-        username
+        email
+        password
       }
     }
   }
 `;
 
-//ADD TRIPS AND ACTIVITIES
+// ADD TRIPS AND ACTIVITIES
 
 export const ADD_TRIPS = gql`
   mutation addTrips($destination: String!, $savedActivities: [Schema]) {
@@ -31,14 +32,15 @@ export const ADD_TRIPS = gql`
         trips {
           _id
           destination
-          savedActivities {
+          savedActivities
+        }
       }
     }
   }
 `;
 
-export const ACTIVITIES = gql `
-  mutation addActivities($activityName: String!){
+export const ACTIVITIES = gql`
+  mutation addActivities($activityName: String!) {
   addActivity (activityname:$activityName) {
     activities {
           _id
