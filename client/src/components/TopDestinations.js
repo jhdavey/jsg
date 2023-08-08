@@ -6,8 +6,6 @@ import rome from '../assets/rome.jpeg';
 import paris from '../assets/paris.jpeg';
 import cancun from '../assets/cancun.jpeg';
 
-
-
 function TopDestinations() {
     
     const [autoPrompt, setAutoPrompt] = useState('');

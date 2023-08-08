@@ -13,7 +13,7 @@ const typeDefs = gql`
   type Trip {
     _id: ID!
     destination: String
-    activities: [Activity]!
+    activities: [Activity]
   }
 
   type Activity {

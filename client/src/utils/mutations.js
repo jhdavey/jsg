@@ -20,8 +20,6 @@ export const LOGIN_USER = gql`
   }
 `;
 
-// ADD TRIPS AND ACTIVITIES
-
 export const ADD_TRIPS = gql`
   mutation addTrips($destination: String!, $savedActivities: [Schema]) {
     addTrips(destination: $destination, savedActivities: $savedActivities) {
