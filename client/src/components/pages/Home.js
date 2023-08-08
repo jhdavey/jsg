@@ -14,6 +14,7 @@ export default function Home() {
             <Card.Img className="card-image" src={snorkelImg} alt="Go snorkeling in Cancun!" />
                 <Card.ImgOverlay className='img-overlay'>
                     <Navigation />
+                    <h2 style={{color: 'white', textAlign: 'center', marginTop: '10px'}}>Get a list of the most popular activities in any destination!</h2>
                     <ChatGPT />
                 </Card.ImgOverlay>
         </Card>

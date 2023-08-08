@@ -6,10 +6,8 @@ const bcrypt = require('bcrypt');
 module.exports = {
     Query: {
         //Start User Queries
-        users: async () => User.find().populate('trips'),
-        user: async (_, { username }) => User.findOne({ username }).populate('trips'),
-        // End User Queries
-
+        users: async () => User.find().populate({path:'trips', populate:{path:'activities', model:'Activity'}}),
+        user: async (_, { username }) => User.findOne({ username }).populate({path:'trips', populate:{path:'activities', model:'Activity'}}),        // End User Queries
         // Start Trip Queries
         trips: async (_, { username }) => { const params = username ? { username } : {};
             return Trip.find(params).populate('activities');
