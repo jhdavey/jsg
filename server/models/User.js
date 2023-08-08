@@ -18,13 +18,13 @@ const userSchema = new Schema({
     unique: true,
   },
   token: {
-    type: String
+    type: String,
   },
   trips: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Trip',
-    }
+    },
   ],
 },
   {

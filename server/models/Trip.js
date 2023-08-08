@@ -7,7 +7,7 @@ const tripSchema = new Schema({
   destination: {
       type: String,
     },
-    savedActivities: [
+    activities: [
       {
       type: Schema.Types.ObjectId,
       ref: 'Activity',

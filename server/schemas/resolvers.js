@@ -11,11 +11,10 @@ module.exports = {
         // End User Queries
 
         // Start Trip Queries
-        trips: async (_, { username }) => {
-            const params = username ? { username } : {};
-            return Trip.find(params);
+        trips: async (_, { username }) => { const params = username ? { username } : {};
+            return Trip.find(params).populate('activities');
         },
-        trip: async (_, { tripId }) => Trip.findOne({ _id: tripId })
+        trip: async (_, { tripId }) => Trip.findOne({ _id: tripId }).populate('activities'),
         // End Trip Queries
     },
 
