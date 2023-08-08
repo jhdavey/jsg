@@ -1,12 +1,16 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
+import { AuthContext } from "../../context/authContext";
 
-const TRIPS = gql`
-query Query {
-  trips {
-    destination
-    activities {
-      activityName
+// GET SINGLE USER'S TRIPS
+const MY_TRIPS = gql`
+query Query($username: String!) {
+  user(username: $username) {
+    trips {
+      destination
+      activities {
+        activityName
+      }
     }
   }
 }
@@ -14,28 +18,36 @@ query Query {
 
 export default function MyTrips () {
 
-  const { loading, error, data } = useQuery(TRIPS);
+  const currentUser = localStorage.username;
+
+  const { loading, error, data } = useQuery(MY_TRIPS, {
+    variables: { username: currentUser },
+  });
 
   if (loading) return "Loading...";
 
   if (error) return `Error! ${error.message}`;
-
-  const destinations = data.trips;
-  console.log(destinations);
+  
+  const trips = data.user.trips;
+  console.log(trips);
 
   return (
     <div>
       <h1>My Trips</h1>
-      {destinations.length === 0 ? (
+      {trips.length === 0 ? (
         <p>No trips added yet.</p>
         ) : (
           <ul>
-          {destinations.map(destinations => 
-          <div key={destinations}>
-              <li>{destinations.destination}</li>
-              <div key={destinations.destination}>
+          {trips.map(trips => 
+          <div key={trips}>
+              <li>{trips.destination}</li>
+              <div key={trips.destination}>
                 <ul>
-                  <li>{destinations.destination.activities}</li>
+                {trips.destination.activities ? (
+                  <p>No activities added yet.</p>
+                ) : (
+                  <li>{trips.destination.activities}</li>
+                  )}
                 </ul>
               </div>
           </div>
@@ -43,7 +55,5 @@ export default function MyTrips () {
           </ul>
         )}
     </div>
-
-    
   )
 };
