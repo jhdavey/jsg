@@ -9,6 +9,9 @@ const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
 require('dotenv').config();
 
+
+// const openai = new OpenAIApi(config);
+
 //Initialize instance of express server
 const app = express();
 

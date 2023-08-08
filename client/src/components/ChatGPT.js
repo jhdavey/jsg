@@ -6,6 +6,7 @@ export default function ChatGPT() {
     const [prompt, setPrompt] = useState("");
     const [response, setResponse] = useState("");
     const [activityList, setActivityList] = useState([]);
+    const [MyTrips, setMyTrips] = useState([]);
     const HTTP = "http://localhost:3001/chat";
 
     //Once response is set from Chatbot, pull out numbered list, create an array, then map over array to create a list of activites
@@ -30,6 +31,8 @@ export default function ChatGPT() {
     function saveActivity(e) {
         //TODO - Need to update this to save to trip instead of just console logging
         console.log(e.target.value);
+        const activity = e.target.value;
+        setMyTrips((prevTrips) => [...prevTrips, activity])
     }
 
     return (
@@ -56,9 +59,16 @@ export default function ChatGPT() {
                                 {act}
                             </button>
                             </div>
-                        )
-                    }
+                        )}
             </div>
+            {/* Show myTrips */}
+                <div className="my-trips">
+                    <h4>My Trips:</h4>
+                    <ul> {MyTrips.map((trip, index) => (
+                        <li key={index}>{trip}</li>
+                    ))}
+                    </ul>
+                </div>
         </div>
     </>
 )};
