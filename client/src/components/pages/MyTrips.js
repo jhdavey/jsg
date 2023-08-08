@@ -1,6 +1,5 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
-import { AuthContext } from "../../context/authContext";
 
 // GET SINGLE USER'S TRIPS
 const MY_TRIPS = gql`
