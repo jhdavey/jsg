@@ -1,7 +1,7 @@
 const { gql } = require('@apollo/client');
 
 export const ADD_USER = gql`
-  mutation Mutation($username: String!, $email: String!, $password: String!) {
+  mutation createUser($username: String!, $email: String!, $password: String!) {
     createUser(username: $username, email: $email, password: $password) {
       username
       email
@@ -42,8 +42,17 @@ export const ADD_TRIPS = gql`
 export const ACTIVITIES = gql`
   mutation addActivities($activityName: String!) {
   addActivity (activityname:$activityName) {
-    activities {
+    user {
+        _id
+        trips {
           _id
-          activityName
+          destination
+          savedActivities{
+            _id
+            activityName
+          }
+        }
+      }
+    }
   }
 `;

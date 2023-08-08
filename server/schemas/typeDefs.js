@@ -21,7 +21,6 @@ const typeDefs = gql`
     activityName: String
   }
 
-
   type Query {
     users: [User]
     user(username: String!): User
