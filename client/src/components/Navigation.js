@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SignUpForm from '../components/signupForm';
 import LoginForm from '../components/loginForm';
 import Auth from '../utils/auth';
+import { AuthContext } from "../context/authContext";
 import { Nav, Modal, Navbar, Container } from 'react-bootstrap';
 
 const Navigation = () => {
@@ -22,16 +23,16 @@ const Navigation = () => {
                  <Navbar.Toggle aria-controls='navbar' />
                  <Navbar.Collapse id='navbar'>
                      <Nav>
-                         {/* {!Auth.loggedIn()? (
+                         { AuthContext ? (
                         <>
                         <Nav.Link as={Link} to='/mytrips'>
                         My Trips
                         </Nav.Link>
-                        <Nav.Link onClick={Auth.login}>Login</Nav.Link>
+                        <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                         </>
-                        ) : ( */}
+                        ) : (
                         <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
-                        {/* )} */}
+                        )}
                     </Nav>
                 </Navbar.Collapse>  
             </Container>

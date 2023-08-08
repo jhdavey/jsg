@@ -28,12 +28,12 @@ const SignupForm = () => {
   const [ createUser, { loading }] = useMutation(ADD_USER, {
     update(proxy, { data: { createUser: userData }}) {
       context.login(userData);
-      navigate('/');
+      window.location.assign('/');
     },
     onError({ graphQLErrors }) {
       setErrors(graphQLErrors);
     },
-    variables: { createUser: values }
+    variables: { ...values }
   })
 
   return (

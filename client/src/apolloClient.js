@@ -12,7 +12,7 @@ const httpLink = createHttpLink({
     return {
       headers: {
         ...headers,
-        authorization: localStorage.getItem('token')
+        authorization: localStorage.getItem('token'),
       },
     };
   });
