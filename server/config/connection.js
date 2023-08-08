@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const MONGODB_URI = "mongodb+srv://jhdavey5182:<password>@cluster0.ewhd2ki.mongodb.net/?retryWrites=true&w=majority";
+const LOCALHOST = "mongodb://127.0.0.1:27017/jsg";
 
-mongoose.connect(MONGODB_URI, {useNewUrlParser: true})
+mongoose.connect(process.env.MONGODB_URI || LOCALHOST, {useNewUrlParser: true})
     .then(() => {
         console.log('MongoDB Connected!');
     });
