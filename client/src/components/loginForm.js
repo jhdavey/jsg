@@ -1,77 +1,47 @@
-import React, { useState } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
-
-// GraphQL API
+import { useState, useContext } from "react";
+import { AuthContext } from "../context/authContext";
+import { useForm } from "../utils/hooks";
 import { useMutation } from "@apollo/client";
+import { Form, Button, Alert } from "react-bootstrap";
+// GraphQL API
 import { LOGIN_USER } from "../utils/mutations";
 
+
 const LoginForm = () => {
-  // State to store form data
-  const [userFormData, setUserFormData] = useState({ email: "", password: "" });
-  // State for form validation
-  const [validated] = useState(false);
-  // State to show or hide the alert for login errors
-  const [showAlert, setShowAlert] = useState(false);
+  const context = useContext(AuthContext);
+  const [errors, setErrors] = useState([]);
 
-  // useMutation hook for the LOGIN_USER mutation
-  const [login, { loading }] = useMutation(LOGIN_USER);
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-  };
-
-  // Handle form submission
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    try {
-      // Call the login mutation with the form data
-      const { data } = await login({
-        variables: userFormData,
-      });
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
-    }
-
-    // Reset form fields after form submission
-    setUserFormData({
-      username: "",
-      email: "",
-      password: "",
-    });
-  };
-
-  if (loading) {
-    return <div>Loading...</div>;
+  function loginCallback() {
+    console.log('Callback hit...')
+    login();
   }
+
+  const { onChange, onSubmit, values } = useForm(loginCallback, {
+    email: '',
+    password: ''
+  });
+
+  const [login, { loading }] = useMutation(LOGIN_USER, {
+    update(proxy, { data: { login: userData }}) {
+      context.login(userData);
+      window.location.assign('/');
+    },
+    onError({ graphQLErrors }) {
+      setErrors(graphQLErrors);
+    },
+    variables: { ...values }
+  })
 
   return (
     <>
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        <Alert
-          dismissible
-          onClose={() => setShowAlert(false)}
-          show={showAlert}
-          variant="danger"
-        >
-          Something went wrong with your login credentials!
-        </Alert>
+      <Form>
         <Form.Group>
           <Form.Label htmlFor="email">Email</Form.Label>
           <Form.Control
             type="text"
             placeholder="Your email"
             name="email"
-            onChange={handleInputChange}
-            value={userFormData.email}
+            onChange={onChange}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -85,8 +55,7 @@ const LoginForm = () => {
             type="password"
             placeholder="Your password"
             name="password"
-            onChange={handleInputChange}
-            value={userFormData.password}
+            onChange={onChange}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -94,12 +63,18 @@ const LoginForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
         <Button
-          disabled={!(userFormData.email && userFormData.password)}
-          type="submit"
           variant="success"
+          onClick={onSubmit}
         >
           Submit
         </Button>
+        {errors.map(function(error){
+          return (
+            <Alert severity="error">
+              {error.message}
+            </Alert>
+          )
+        })}
       </Form>
     </>
   );

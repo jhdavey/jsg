@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
-import MyTrips from './components/pages/MyTrips'
+import MyTrips from './components/pages/MyTrips';
 import { ApolloProvider } from '@apollo/client';
 import { AuthProvider } from './context/authContext';
 import client from './apolloClient';
