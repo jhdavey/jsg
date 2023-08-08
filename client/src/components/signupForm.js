@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/authContext";
 import { useForm } from "../utils/hooks";
 import { useMutation } from "@apollo/client";
-import { useNavigate } from 'react-router-dom';
 import { Form, Button, Alert } from "react-bootstrap";
 // Apollo GraphQL
 import { ADD_USER } from "../utils/mutations";
@@ -11,7 +10,6 @@ import { ADD_USER } from "../utils/mutations";
 
 const SignupForm = () => {
   const context = useContext(AuthContext);
-  let navigate = useNavigate();
   const [errors, setErrors] = useState([]);
 
   function createUserCallback() {
@@ -38,10 +36,7 @@ const SignupForm = () => {
 
   return (
     <>
-      {/* This is needed for the validation functionality above */}
       <Form>
-        {/* show alert if server response is bad */}
-
         <Form.Group>
           <Form.Label htmlFor="username">Username</Form.Label>
           <Form.Control
