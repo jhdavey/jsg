@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const LOCALHOST = "mongodb://127.0.0.1:27017/jsg";
+const LOCALHOST = "mongodb+srv://harley:Baileyfisker!1@cluster0.bse1up2.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose.connect(process.env.MONGODB_URI || LOCALHOST, {useNewUrlParser: true})
     .then(() => {
