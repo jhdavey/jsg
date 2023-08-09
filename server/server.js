@@ -23,6 +23,14 @@ app.use(express.urlencoded({ extended: true }));
 const config = new Configuration({
   apiKey: process.env.OPEN_AI_KEY
 })
+// Serve up static assets
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/"));
+});
 
 app.post("/chat", async (req, res) => {
   const {prompt} = req.body;
@@ -81,8 +89,6 @@ startApolloServer(typeDefs, resolvers);
 
 
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/"));
-});
+
 
 
