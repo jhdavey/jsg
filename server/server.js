@@ -25,7 +25,17 @@ app.use(express.urlencoded({ extended: true }));
 //Start Open Ai connection setup
 const config = new Configuration({
   apiKey: process.env.OPEN_AI_KEY
-})
+});
+
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')))
+};
+
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client'));
+  });
+
 
 app.post("/chat", async (req, res) => {
   const {prompt} = req.body;
@@ -69,7 +79,6 @@ db.once("open", () => {
 
 // Call async function to start the server
 startApolloServer(typeDefs, resolvers);
-
 
 
 
