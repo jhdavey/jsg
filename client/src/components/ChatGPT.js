@@ -20,7 +20,7 @@ export default function ChatGPT() {
     const [response, setResponse] = useState("");
     const [activityList, setActivityList] = useState([]);
     const [MyTrips, setMyTrips] = useState([]);
-    const HTTP = "http://localhost:3001/chat"; 
+    const HTTP = "/chat"; 
 
     //Once response is set from Chatbot, pull out numbered list, create an array, then map over array to create a list of activites
     const createList = () => {
