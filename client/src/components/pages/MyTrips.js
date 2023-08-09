@@ -1,5 +1,9 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
+import Navigation from '../Navigation';
+
+
+
 
 // GET SINGLE USER'S TRIPS
 const MY_TRIPS = gql`
@@ -32,12 +36,16 @@ export default function MyTrips () {
   console.log(trips.activities);
 
   return (
-    <div>
-    <h1>My Trips</h1>
+    
+    <div className="mytrips">
+      <div className="tripnav">
+        <Navigation />
+      </div>
+    <h1 style={{ textAlign: 'center' }}>My Trips</h1>
     {trips?.length === 0 ? (
       <p>No trips added yet.</p>
       ) : (
-        <ul>
+        <ul className="triplist">
         {trips?.map(trips =>
         <div key={trips}>
             <li>{trips.destination}</li>
@@ -59,3 +67,4 @@ export default function MyTrips () {
   </div>
 )
 };
+
