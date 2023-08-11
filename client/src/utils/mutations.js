@@ -21,34 +21,9 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_TRIPS = gql`
-  mutation addTrips($destination: String!, $savedActivities: [Schema]) {
-    addTrips(destination: $destination, savedActivities: $savedActivities) {
-      user {
-        _id
-        trips {
-          _id
-          destination
-          savedActivities
-        }
-      }
-    }
+mutation Mutation($username: String!, $destination: String!) {
+  addTrip(username: $username, destination: $destination) {
+    destination
   }
-`;
-
-export const ACTIVITIES = gql`
-  mutation addActivities($activityName: String!) {
-  addActivity (activityname:$activityName) {
-    user {
-        _id
-        trips {
-          _id
-          destination
-          savedActivities{
-            _id
-            activityName
-          }
-        }
-      }
-    }
-  }
+}
 `;

@@ -1,24 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
-import { useMutation, gql } from "@apollo/client";
+import { useMutation } from "@apollo/client";
+import { ADD_TRIPS, ADD_ACTIVITIES } from "../utils/mutations";
 
-// SAVE USER'S TRIP
-const ADD_TRIP = gql`
-mutation addTrip($username: String!) {
-    addTrip(username: $username, destination: $destination) {
-        _id
-        destination
-      }
-    }
-`;
-
+// ChatGPT Component 
 export default function ChatGPT() {
+
     const [prompt, setPrompt] = useState("");
     const [response, setResponse] = useState("");
     const [activityList, setActivityList] = useState([]);
     const [MyTrips, setMyTrips] = useState([]);
     const HTTP = "/chat"; 
-
     //Once response is set from Chatbot, pull out numbered list, create an array, then map over array to create a list of activites
     const createList = () => {
         let regex = /(\d+\.\d*)\s?(.*?)(?=\d+\.|$)/gs;
@@ -43,25 +35,18 @@ export default function ChatGPT() {
         setMyTrips((prevTrips) => [...prevTrips, activity])
     }
 
-    const currentUser = localStorage.username;
+    // Add destination to user database first - ADD_TRIPS mutations
+    const [addTrip, { loading }] = useMutation(ADD_TRIPS, {
+        variables: { username: localStorage.username, destination: prompt, activities: MyTrips }
+    });
 
-    // const [ addTrip, { loading }] = useMutation(ADD_TRIP, {
-    //     variables: { 
-    //         username: currentUser,
-    //         destination: prompt,
-    //     }
-    // })
+     
 
-    function saveTrip() {
-    const trip = { 
-        destination: prompt,
-        activities: MyTrips,
+    async function saveTrip() {
+        await addTrip();
+              
+        console.log(prompt + ' Added to MyTrips for logged in user: ' + localStorage.username);
     };
-    console.log(prompt);
-    console.log(trip);
-    // addTrip();
-    
-};
 
     return (
     <>

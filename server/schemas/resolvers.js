@@ -13,6 +13,7 @@ module.exports = {
             return Trip.find(params).populate('activities');
         },
         trip: async (_, { tripId }) => Trip.findOne({ _id: tripId }).populate('activities'),
+        getTrip: async (_, { destination }) => Trip.findOne({ destination: destination }).populate('activities'),
         // End Trip Queries
     },
 
@@ -78,28 +79,18 @@ module.exports = {
         // End User Mutations
 
         // Start Trip & Activity Mutations
-        addTrip: async (_, { username, destination }) => {
+        addTrip: async (_, { username, destination, activities }) => {
         const trip = await Trip.create({ destination });
     
         await User.findOneAndUpdate(
             { username: username },
             { $addToSet: { trips: trip } },
+            { $addToSet: { activities: activities } },
             { new: true }
         );
     
         return trip;
         },
-        addActivity: async (_, { tripId, activityName }) => {
-            const activity = await Activity.create({ activityName });
-        
-            await Trip.findOneAndUpdate(
-                { _id: tripId },
-                { $addToSet: { activities: activity } },
-                { new: true }
-            );
-        
-            return activity;
-            },
         // End Trip & Activity Mutations
     },
 };
