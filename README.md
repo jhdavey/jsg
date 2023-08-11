@@ -1,4 +1,4 @@
-<div align="center">
+<!-- <div align="center">
 <img src="https://forthebadge.com/images/badges/made-with-javascript.svg" alt="js">
 <img src="https://forthebadge.com/images/badges/makes-people-smile.svg" alt="smile">
 <img src="https://forthebadge.com/images/badges/powered-by-coffee.svg" alt="coffee">
@@ -8,7 +8,7 @@
 </div>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"> -->
           
           
 # Jet Set Go 
@@ -45,7 +45,7 @@ To install and use this repo, please follow the below instructions:
 
 ## Usage
 
-To use the web-based version no installation is required. Simply navigate to the deployed application [URL]() and begin using the app in your browser.
+To use the web-based version no installation is required. Simply navigate to the deployed application [URL](https://salty-tor-71177-880297e382ef.herokuapp.com/) and begin using the app in your browser.
 
 
 ## Technologies
@@ -64,9 +64,9 @@ To use the web-based version no installation is required. Simply navigate to the
 ## Demo
 
 
-<img src="" style="width:900px;height:auto">
+<img src="./client/src/assets/screenshot.png" style="width:900px;height:auto">
 
-Follow me to the [Deployed Application]()
+Follow me to the [Deployed Application](https://salty-tor-71177-880297e382ef.herokuapp.com/)
 
 
 ## Contributors
@@ -88,7 +88,7 @@ If you encounter any issues while using the Jet Set Go Application or have any s
 The Jet Set Go Application is released under the [MIT License](https://opensource.org/licenses/MIT). You are free to use, modify, and distribute this application as per the terms of this license.
 
 
-<div align="center">
+<!-- <div align="center">
     <img src="https://forthebadge.com/images/badges/built-by-developers.svg" />
     <img style="width:250px" src="https://forthebadge.com/images/badges/works-on-my-machine.svg">
-</div>
+</div> -->
