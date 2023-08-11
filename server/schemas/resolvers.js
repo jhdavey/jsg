@@ -79,18 +79,28 @@ module.exports = {
         // End User Mutations
 
         // Start Trip & Activity Mutations
-        addTrip: async (_, { username, destination, activities }) => {
+        addTrip: async (_, { username, destination }) => {
         const trip = await Trip.create({ destination });
     
         await User.findOneAndUpdate(
             { username: username },
             { $addToSet: { trips: trip } },
-            { $addToSet: { activities: activities } },
             { new: true }
         );
     
         return trip;
         },
+        addActivity: async (_, { tripId, activityName }) => {
+            const activity = await Activity.create({ activityName });
+        
+            await Trip.findOneAndUpdate(
+                { _id: tripId },
+                { $addToSet: { activities: activity } },
+                { new: true }
+            );
+        
+            return activity;
+            },
         // End Trip & Activity Mutations
     },
 };
